@@ -1,44 +1,101 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GuardianX Bot</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GuardianX Discord Bot</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0d0d0d;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .button {
+      background: white;
+      color: black;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+    }
+
+    .section {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .commands-list {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>🛡️ GuardianX</h1>
-    <p>Je Discord beveiligingsbot</p>
-    <a href="https://discord.com/api/oauth2/authorize?client_id=JOUW_CLIENT_ID&permissions=8&scope=bot%20applications.commands" class="invite-button">➕ Nodig de bot uit</a>
+    <h1>GuardianX Discord Bot</h1>
+    <div class="buttons">
+      <a href="#" class="button">Invite Bot</a>
+      <a href="#commands" class="button">Commands</a>
+      <a href="#status" class="button">Status</a>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>📡 Bot status</h2>
-      <p id="status">Laden...</p>
-    </section>
+  <section class="section" id="commands">
+    <h2>Available Commands</h2>
+    <div class="commands-list">
+      <p>/config - Configure server settings</p>
+      <p>/ban - Ban a member</p>
+      <p>/log - View moderation logs</p>
+      <p>/kick - Kick a member</p>
+      <p>/warn - Warn a user</p>
+    </div>
+  </section>
 
-    <section>
-      <h2>📋 Commands</h2>
-      <ul>
-        <li><code>/config log &lt;kanaal&gt;</code> – Stel logkanaal in</li>
-        <li><code>/config show</code> – Toon huidige instellingen</li>
-        <li><code>/ban</code>, <code>/kick</code>, <code>/timeout</code> – Moderatie</li>
-        <!-- Voeg je eigen commands toe -->
-      </ul>
-    </section>
-
-    <section>
-      <h2>❓ Hoe voeg ik GuardianX toe?</h2>
-      <p>Klik op de "➕ Nodig de bot uit" knop hierboven. Selecteer je server en geef de juiste rechten.</p>
-    </section>
-  </main>
+  <section class="section" id="status">
+    <h2>Status</h2>
+    <p>🟢 GuardianX is Online</p>
+    <p>🛡️ Protecting 15+ servers</p>
+  </section>
 
   <footer>
-    <p>© 2025 GuardianX Bot</p>
+    <p>&copy; 2025 GuardianX Bot. All rights reserved.</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
+
