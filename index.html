@@ -17,6 +17,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      scroll-behavior: smooth;
     }
     a {
       color: inherit;
@@ -126,6 +127,14 @@
     .status p {
       margin: 0.5rem 0;
     }
+    .status .online {
+      color: #32cd32; /* bright green */
+      font-weight: 700;
+    }
+    .status .offline {
+      color: #ff4b2b;
+      font-weight: 700;
+    }
 
     /* Footer */
     footer {
@@ -161,9 +170,9 @@
   <header>
     <h1>GuardianX Discord Bot</h1>
     <div class="btn-group">
-      <a href="#" class="btn">Invite Bot</a>
-      <a href="#commands" class="btn">Commands</a>
-      <a href="#status" class="btn">Status</a>
+      <button class="btn" id="inviteBtn">Invite Bot</button>
+      <button class="btn" data-scroll-to="commands">Commands</button>
+      <button class="btn" data-scroll-to="status">Status</button>
     </div>
   </header>
 
@@ -186,14 +195,74 @@
 
   <section id="status" class="container">
     <h2>Status</h2>
-    <div class="status">
-      <p>🟢 GuardianX is Online</p>
-      <p>🛡️ Protecting 15+ servers</p>
+    <div class="status" id="statusText">
+      <p class="loading">Loading status...</p>
     </div>
   </section>
 
   <footer>
     <p>&copy; 2025 GuardianX Bot. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Invite Bot button link (replace with your real invite URL)
+    const inviteUrl = "https://discord.com/oauth2/authorize?client_id=YOUR_BOT_CLIENT_ID&scope=bot%20applications.commands&permissions=8";
+
+    document.getElementById('inviteBtn').addEventListener('click', () => {
+      window.open(inviteUrl, '_blank');
+    });
+
+    // Smooth scroll buttons
+    document.querySelectorAll('button[data-scroll-to]').forEach(button => {
+      button.addEventListener('click', () => {
+        const id = button.getAttribute('data-scroll-to');
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Simulated real-time status & server count update
+    const statusText = document.getElementById('statusText');
+
+    // Fake API call simulation
+    function fetchStatus() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          // Simulate bot online status and servers count
+          const isOnline = true; // change to false to simulate offline
+          const serversCount = 17; // example count
+          resolve({ isOnline, serversCount });
+        }, 1500);
+      });
+    }
+
+    async function updateStatus() {
+      try {
+        const { isOnline, serversCount } = await fetchStatus();
+
+        if (isOnline) {
+          statusText.innerHTML = `
+            <p class="online">🟢 GuardianX is Online</p>
+            <p>🛡️ Protecting <strong>${serversCount}+</strong> servers</p>
+          `;
+        } else {
+          statusText.innerHTML = `
+            <p class="offline">🔴 GuardianX is Offline</p>
+            <p>Currently not protecting any servers</p>
+          `;
+        }
+      } catch (error) {
+        statusText.innerHTML = `<p class="offline">⚠️ Unable to fetch status</p>`;
+        console.error("Error fetching status:", error);
+      }
+    }
+
+    updateStatus();
+
+    // Optional: Refresh status every 60 seconds
+    setInterval(updateStatus, 60000);
+  </script>
 </body>
 </html>
