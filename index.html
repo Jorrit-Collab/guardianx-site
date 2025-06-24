@@ -2,67 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GuardianX Discord Bot</title>
   <style>
     body {
       margin: 0;
-      background-color: #0d0d0d;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
       text-align: center;
-      padding: 3rem 1rem 2rem;
+      padding: 4rem 1rem 3rem;
+      background: linear-gradient(90deg, #0f3460 0%, #53354a 100%);
+      box-shadow: 0 4px 10px rgba(83, 53, 74, 0.7);
+      border-radius: 0 0 30px 30px;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin: 0;
+      text-shadow: 0 0 10px #53354a;
     }
 
     .buttons {
       display: flex;
       justify-content: center;
       gap: 1.5rem;
-      margin: 2rem 0;
+      margin: 2.5rem 0 0;
     }
 
     .button {
-      background: white;
-      color: black;
-      padding: 1rem 2rem;
+      background: linear-gradient(45deg, #e94560, #903749);
+      color: white;
+      padding: 1rem 2.5rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 1.2rem;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(233, 69, 96, 0.6);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .button:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
+      box-shadow: 0 6px 20px rgba(233, 69, 96, 0.9);
     }
 
     .section {
       max-width: 800px;
-      margin: auto;
-      padding: 2rem;
+      margin: 3rem auto;
+      padding: 2.5rem 2rem;
       text-align: center;
+      background: rgba(20, 20, 40, 0.7);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(15, 52, 96, 0.5);
+      backdrop-filter: blur(10px);
     }
 
     .commands-list {
-      background-color: #1a1a1a;
-      border-radius: 12px;
+      background-color: rgba(30, 30, 50, 0.85);
+      border-radius: 15px;
       padding: 1.5rem;
       margin-top: 1rem;
+      box-shadow: inset 0 0 10px rgba(144, 55, 74, 0.7);
+      font-weight: 500;
+      font-size: 1.1rem;
     }
 
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #aaa;
+      font-size: 0.95rem;
+      color: #bbb;
+      margin-top: auto;
+      background: linear-gradient(90deg, #53354a 0%, #0f3460 100%);
+      border-radius: 30px 30px 0 0;
+      box-shadow: 0 -4px 10px rgba(83, 53, 74, 0.7);
     }
   </style>
 </head>
@@ -98,4 +122,3 @@
   </footer>
 </body>
 </html>
-
