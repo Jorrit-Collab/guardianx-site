@@ -5,104 +5,177 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GuardianX Discord Bot</title>
   <style>
+    /* Reset & basics */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-      color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      color: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      width: 100%;
+    }
 
+    /* Header */
     header {
+      padding: 2rem 0;
       text-align: center;
-      padding: 4rem 1rem 3rem;
       background: linear-gradient(90deg, #0f3460 0%, #53354a 100%);
-      box-shadow: 0 4px 10px rgba(83, 53, 74, 0.7);
+      box-shadow: 0 3px 10px rgba(83, 53, 74, 0.7);
       border-radius: 0 0 30px 30px;
     }
-
-    h1 {
-      font-size: 3.5rem;
-      margin: 0;
-      text-shadow: 0 0 10px #53354a;
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 15px #ff416c;
     }
-
-    .buttons {
+    .btn-group {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      margin: 2.5rem 0 0;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-
-    .button {
-      background: linear-gradient(45deg, #e94560, #903749);
-      color: white;
+    .btn {
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
       padding: 1rem 2.5rem;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.2rem;
+      border-radius: 30px;
+      font-size: 1.25rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 15px rgba(233, 69, 96, 0.6);
-      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(255, 65, 108, 0.7);
+      transition: all 0.3s ease;
+      border: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      user-select: none;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 65, 108, 1);
     }
 
-    .button:hover {
-      transform: scale(1.07);
-      box-shadow: 0 6px 20px rgba(233, 69, 96, 0.9);
-    }
-
-    .section {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 2.5rem 2rem;
+    /* Hero / Intro */
+    .hero {
+      flex: 1;
+      padding: 5rem 1rem 3rem;
       text-align: center;
-      background: rgba(20, 20, 40, 0.7);
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(15, 52, 96, 0.5);
-      backdrop-filter: blur(10px);
+      max-width: 700px;
+      margin: 0 auto;
     }
-
-    .commands-list {
-      background-color: rgba(30, 30, 50, 0.85);
-      border-radius: 15px;
-      padding: 1.5rem;
+    .hero p {
+      font-size: 1.2rem;
+      line-height: 1.6;
       margin-top: 1rem;
-      box-shadow: inset 0 0 10px rgba(144, 55, 74, 0.7);
-      font-weight: 500;
-      font-size: 1.1rem;
+      color: #ddd;
     }
 
+    /* Sections */
+    section {
+      margin-bottom: 4rem;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ff416c;
+      text-shadow: 0 0 8px #ff416c;
+    }
+    .commands-list {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(30, 30, 50, 0.9);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 8px 25px rgba(255, 65, 108, 0.4);
+      font-weight: 600;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    .commands-list p {
+      margin: 0.7rem 0;
+      border-bottom: 1px solid rgba(255, 65, 108, 0.3);
+      padding-bottom: 0.5rem;
+    }
+    .commands-list p:last-child {
+      border-bottom: none;
+    }
+
+    /* Status */
+    .status {
+      text-align: center;
+      font-size: 1.3rem;
+      color: #a9a9a9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .status p {
+      margin: 0.5rem 0;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      font-size: 0.95rem;
-      color: #bbb;
-      margin-top: auto;
       background: linear-gradient(90deg, #53354a 0%, #0f3460 100%);
+      color: #bbb;
       border-radius: 30px 30px 0 0;
       box-shadow: 0 -4px 10px rgba(83, 53, 74, 0.7);
+      user-select: none;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      .btn {
+        font-size: 1rem;
+        padding: 0.9rem 2rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      .commands-list {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>GuardianX Discord Bot</h1>
-    <div class="buttons">
-      <a href="#" class="button">Invite Bot</a>
-      <a href="#commands" class="button">Commands</a>
-      <a href="#status" class="button">Status</a>
+    <div class="btn-group">
+      <a href="#" class="btn">Invite Bot</a>
+      <a href="#commands" class="btn">Commands</a>
+      <a href="#status" class="btn">Status</a>
     </div>
   </header>
 
-  <section class="section" id="commands">
+  <main class="hero container">
+    <p>
+      GuardianX is a powerful and easy-to-use Discord bot offering moderation, utility, and fun features to keep your server safe and engaged.
+    </p>
+  </main>
+
+  <section id="commands" class="container">
     <h2>Available Commands</h2>
-    <div class="commands-list">
+    <div class="commands-list" role="list">
       <p>/config - Configure server settings</p>
       <p>/ban - Ban a member</p>
       <p>/log - View moderation logs</p>
@@ -111,10 +184,12 @@
     </div>
   </section>
 
-  <section class="section" id="status">
+  <section id="status" class="container">
     <h2>Status</h2>
-    <p>🟢 GuardianX is Online</p>
-    <p>🛡️ Protecting 15+ servers</p>
+    <div class="status">
+      <p>🟢 GuardianX is Online</p>
+      <p>🛡️ Protecting 15+ servers</p>
+    </div>
   </section>
 
   <footer>
