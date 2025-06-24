@@ -1,43 +1,65 @@
+/* style.css */
+
 body {
-  font-family: Arial, sans-serif;
-  background: #1e1e2f;
-  color: white;
   margin: 0;
-  padding: 0;
+  background-color: #0d0d0d;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
-  background: #2c2f4a;
   text-align: center;
-  padding: 2em;
+  padding: 3rem 1rem 2rem;
 }
 
-header h1 {
-  font-size: 2.5em;
+h1 {
+  font-size: 3rem;
   margin: 0;
 }
 
-.invite-button {
-  background: #5865f2;
-  color: white;
-  padding: 0.8em 1.2em;
-  border-radius: 6px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 1em;
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
 }
 
-main {
-  padding: 2em;
+.button {
+  background: white;
+  color: black;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-decoration: none; /* voor <a> elementen */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-section {
-  margin-bottom: 2em;
+.button:hover {
+  transform: scale(1.05);
+}
+
+.section {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.commands-list {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1rem;
 }
 
 footer {
   text-align: center;
-  background: #2c2f4a;
-  padding: 1em;
-  font-size: 0.9em;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #aaa;
 }
