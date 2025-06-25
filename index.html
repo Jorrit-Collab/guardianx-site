@@ -1,48 +1,32 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GuardianX Discord Bot</title>
   <style>
-    /* Reset & basics */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      background: linear-gradient(135deg, #1a1a2e, #0f3460);
       color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
       scroll-behavior: smooth;
     }
     a {
       color: inherit;
       text-decoration: none;
     }
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      width: 100%;
-    }
 
-    /* Header */
     header {
-      padding: 2rem 0;
       text-align: center;
-      background: linear-gradient(90deg, #0f3460 0%, #53354a 100%);
-      box-shadow: 0 3px 10px rgba(83, 53, 74, 0.7);
-      border-radius: 0 0 30px 30px;
+      padding: 3rem 1rem 2rem;
+      background: linear-gradient(90deg, #0f3460, #53354a);
+      border-radius: 0 0 25px 25px;
     }
-    header h1 {
+    h1 {
       font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 15px #ff416c;
+      margin: 0 0 1rem;
+      text-shadow: 0 0 10px #ff4b2b;
     }
     .btn-group {
       display: flex;
@@ -52,116 +36,93 @@
     }
     .btn {
       background: linear-gradient(45deg, #ff416c, #ff4b2b);
-      padding: 1rem 2.5rem;
+      color: white;
+      padding: 1rem 2rem;
       border-radius: 30px;
-      font-size: 1.25rem;
-      font-weight: 600;
+      font-size: 1.1rem;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255, 65, 108, 0.7);
-      transition: all 0.3s ease;
       border: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
+      box-shadow: 0 4px 15px rgba(255, 65, 108, 0.6);
+      transition: transform 0.2s;
     }
     .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(255, 65, 108, 1);
+      transform: scale(1.05);
     }
 
-    /* Hero / Intro */
-    .hero {
-      flex: 1;
-      padding: 5rem 1rem 3rem;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin-top: 1rem;
-      color: #ddd;
-    }
-
-    /* Sections */
-    section {
-      margin-bottom: 4rem;
+    .section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
     }
     h2 {
-      text-align: center;
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      text-align: center;
       color: #ff416c;
-      text-shadow: 0 0 8px #ff416c;
-    }
-    .commands-list {
-      max-width: 600px;
-      margin: 0 auto;
-      background: rgba(30, 30, 50, 0.9);
-      border-radius: 20px;
-      padding: 2rem 2.5rem;
-      box-shadow: 0 8px 25px rgba(255, 65, 108, 0.4);
-      font-weight: 600;
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-    .commands-list p {
-      margin: 0.7rem 0;
-      border-bottom: 1px solid rgba(255, 65, 108, 0.3);
-      padding-bottom: 0.5rem;
-    }
-    .commands-list p:last-child {
-      border-bottom: none;
+      margin-bottom: 1.5rem;
     }
 
-    /* Status */
+    /* Scrollable command section */
+    .commands-wrapper {
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 1rem;
+    }
+    .category {
+      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(255, 65, 108, 0.1);
+    }
+    .category h3 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #ff4b2b;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #fff;
+      margin-top: 1rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.6rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    th {
+      color: #ff416c;
+    }
+
     .status {
       text-align: center;
       font-size: 1.3rem;
-      color: #a9a9a9;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .status p {
-      margin: 0.5rem 0;
+      color: #ccc;
     }
     .status .online {
-      color: #32cd32; /* bright green */
-      font-weight: 700;
+      color: #32cd32;
+      font-weight: bold;
     }
     .status .offline {
       color: #ff4b2b;
-      font-weight: 700;
+      font-weight: bold;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      background: linear-gradient(90deg, #53354a 0%, #0f3460 100%);
-      color: #bbb;
-      border-radius: 30px 30px 0 0;
-      box-shadow: 0 -4px 10px rgba(83, 53, 74, 0.7);
-      user-select: none;
-      font-size: 0.9rem;
+      background: linear-gradient(90deg, #53354a, #0f3460);
+      border-radius: 25px 25px 0 0;
+      color: #aaa;
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.2rem;
+      h1 {
+        font-size: 2rem;
       }
       .btn {
         font-size: 1rem;
-        padding: 0.9rem 2rem;
-      }
-      h2 {
-        font-size: 2rem;
-      }
-      .commands-list {
-        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
       }
     }
   </style>
@@ -176,24 +137,56 @@
     </div>
   </header>
 
-  <main class="hero container">
-    <p>
-      GuardianX is a powerful and easy-to-use Discord bot offering moderation, utility, and fun features to keep your server safe and engaged.
-    </p>
-  </main>
+  <section class="section" id="commands">
+    <h2>📜 Commands</h2>
+    <div class="commands-wrapper">
+      <div class="category">
+        <h3>🔧 /config — Serverconfiguratie (Admins)</h3>
+        <table>
+          <thead><tr><th>Commando</th><th>Beschrijving</th></tr></thead>
+          <tbody>
+            <tr><td>/config log-channel</td><td>Stel een kanaal in voor logberichten</td></tr>
+            <tr><td>/config welcome-message</td><td>Stel een welkomkanaal in</td></tr>
+            <tr><td>/config leave-message</td><td>Stel een vertrek-kanaal in</td></tr>
+            <tr><td>/config level-system</td><td>Zet het levelsysteem aan of uit</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-  <section id="commands" class="container">
-    <h2>Available Commands</h2>
-    <div class="commands-list" role="list">
-      <p>/config - Configure server settings</p>
-      <p>/ban - Ban a member</p>
-      <p>/log - View moderation logs</p>
-      <p>/kick - Kick a member</p>
-      <p>/warn - Warn a user</p>
+      <div class="category">
+        <h3>⚙️ Utilitycommando's</h3>
+        <table>
+          <thead><tr><th>Commando</th><th>Beschrijving</th></tr></thead>
+          <tbody>
+            <tr><td>/ping</td><td>Laat de latency van de bot zien</td></tr>
+            <tr><td>/userinfo</td><td>Toont informatie over een gebruiker</td></tr>
+            <tr><td>/serverinfo</td><td>Toont informatie over de server</td></tr>
+            <tr><td>/avatar</td><td>Laat de avatar van een gebruiker zien</td></tr>
+            <tr><td>/help</td><td>Toont een overzicht van alle beschikbare commando’s</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="category">
+        <h3>👮 Moderatiecommando’s</h3>
+        <table>
+          <thead><tr><th>Commando</th><th>Beschrijving</th></tr></thead>
+          <tbody>
+            <tr><td>/kick</td><td>Kickt een gebruiker uit de server</td></tr>
+            <tr><td>/ban</td><td>Verban een gebruiker permanent</td></tr>
+            <tr><td>/unban</td><td>Haalt een gebruiker van de banlijst (ID nodig)</td></tr>
+            <tr><td>/timeout</td><td>Zet iemand in timeout (tijd in seconden)</td></tr>
+            <tr><td>/warn</td><td>Geeft een waarschuwing aan een gebruiker</td></tr>
+            <tr><td>/clear</td><td>Verwijdert een aantal berichten in het kanaal</td></tr>
+            <tr><td>/lock</td><td>Sluit het kanaal tijdelijk</td></tr>
+            <tr><td>/unlock</td><td>Heropent het kanaal</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-  <section id="status" class="container">
+  <section class="section" id="status">
     <h2>Status</h2>
     <div class="status" id="statusText">
       <p class="loading">Loading status...</p>
@@ -205,63 +198,38 @@
   </footer>
 
   <script>
-    // Invite Bot button link (replace with your real invite URL)
+    // Invite bot URL
     const inviteUrl = "https://discord.com/oauth2/authorize?client_id=1377012769144045569&permissions=8&integration_type=0&scope=bot+applications.commands";
 
     document.getElementById('inviteBtn').addEventListener('click', () => {
       window.open(inviteUrl, '_blank');
     });
 
-    // Smooth scroll buttons
-    document.querySelectorAll('button[data-scroll-to]').forEach(button => {
-      button.addEventListener('click', () => {
-        const id = button.getAttribute('data-scroll-to');
+    // Smooth scrolling
+    document.querySelectorAll('[data-scroll-to]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-scroll-to');
         const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
       });
     });
 
-    // Simulated real-time status & server count update
+    // Simulated status
     const statusText = document.getElementById('statusText');
-
-    // Fake API call simulation
     function fetchStatus() {
-      return new Promise((resolve) => {
+      return new Promise(res => {
         setTimeout(() => {
-          // Simulate bot online status and servers count
-          const isOnline = true; // change to false to simulate offline
-          const serversCount = 17; // example count
-          resolve({ isOnline, serversCount });
-        }, 1500);
+          res({ isOnline: true, servers: 18 });
+        }, 1000);
       });
     }
-
     async function updateStatus() {
-      try {
-        const { isOnline, serversCount } = await fetchStatus();
-
-        if (isOnline) {
-          statusText.innerHTML = `
-            <p class="online">🟢 GuardianX is Online</p>
-            <p>🛡️ Protecting <strong>${serversCount}+</strong> servers</p>
-          `;
-        } else {
-          statusText.innerHTML = `
-            <p class="offline">🔴 GuardianX is Offline</p>
-            <p>Currently not protecting any servers</p>
-          `;
-        }
-      } catch (error) {
-        statusText.innerHTML = `<p class="offline">⚠️ Unable to fetch status</p>`;
-        console.error("Error fetching status:", error);
-      }
+      const { isOnline, servers } = await fetchStatus();
+      statusText.innerHTML = isOnline
+        ? `<p class="online">🟢 GuardianX is Online</p><p>🛡️ Protecting <strong>${servers}+</strong> servers</p>`
+        : `<p class="offline">🔴 Offline</p><p>No servers protected</p>`;
     }
-
     updateStatus();
-
-    // Optional: Refresh status every 60 seconds
     setInterval(updateStatus, 60000);
   </script>
 </body>
